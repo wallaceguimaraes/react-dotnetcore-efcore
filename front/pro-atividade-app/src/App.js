@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import AtividadeForm from './components/atividade/AtividadeForm';
 import AtividadeLista from './components/atividade/AtividadeLista';
+import api from './api/atividade';
 
 
 /* let initialState = [
@@ -11,14 +12,27 @@ import AtividadeLista from './components/atividade/AtividadeLista';
 
 function App() {
 
-  const [index, setIndex] = useState(0);
+  const [index] = useState(0);
   const [atividades, setAtividades] = useState([]);
   const [atividade, setAtividade] = useState({id: 0});
 
+  const pegaTodasAtividades = async () => {
+    const response = await api.get('atividade');
+
+    console.log(response.data)
+    return response.data;
+  }
+
   useEffect(() => {
-    atividades.length <= 0 ? setIndex(1) :
-    setIndex(Math.max.apply(Math, atividades.map( item => item.id)) + 1); 
-  }, [atividades])
+      const getAtividades = async () => {
+        const todasAtividades = await pegaTodasAtividades();
+        if(todasAtividades){
+          setAtividades(todasAtividades);
+        }
+      }
+
+      getAtividades();
+  }, [])
 
 
   function addAtividade(atividade) {

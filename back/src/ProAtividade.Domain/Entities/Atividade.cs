@@ -15,9 +15,30 @@ namespace ProAtividade.Domain.Entities
 
         public string Descricao { get; set; }
 
-        public string Prioridade { get; set; }
+        public DateTime DataCriacao { get; set; }
+
+        public DateTime? DataConclusao { get; set; }
+
+        public Prioridade Prioridade { get; set; }
         
-        public Atividade() { }
+        public Atividade() { 
+            DataCriacao = DateTime.Now;
+            DataConclusao = null;
+        }
      
+        public Atividade( int id, string titulo, string descricao ) : this()
+        { 
+            Id = id;
+            Titulo = titulo;
+            Descricao = descricao;
+        }
+
+        public void Concluir(){
+            if(DataConclusao == null)
+                DataConclusao = DateTime.Now;
+            else
+                throw new Exception($"Atividade já concçuída em: {DataConclusao?.ToString("dd/MM/'yyyy hh:mm")}");
+            
+        }
     }
 }

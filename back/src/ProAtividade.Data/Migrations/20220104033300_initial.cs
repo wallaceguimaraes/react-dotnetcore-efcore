@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProAtividade.Data.Migrations
 {
@@ -14,7 +15,9 @@ namespace ProAtividade.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(type: "varchar(70)", nullable: true),
                     Descricao = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Prioridade = table.Column<string>(type: "varchar(15)", nullable: true)
+                    DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataConclusao = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Prioridade = table.Column<string>(type: "varchar(15)", nullable: false)
                 },
                 constraints: table =>
                 {
