@@ -56,7 +56,6 @@ export default function AtividadeForm(props) {
   
     const handleCancelar = (e) => {
         e.preventDefault();
-
         props.cancelarAtividade()
         setAtividade(atividadeInicial);
         props.handleAtividadeModal();

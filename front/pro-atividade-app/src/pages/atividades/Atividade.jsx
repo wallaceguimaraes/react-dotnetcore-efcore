@@ -114,6 +114,7 @@ function Atividade() {
                 cancelarAtividade={cancelarAtividade}
                 addAtividade={addAtividade} 
                 atualizarAtividade={atualizarAtividade}
+                handleAtividadeModal={handleAtividadeModal}
                 atividadeSelecionada={atividade}
           />
         </Modal.Body>
