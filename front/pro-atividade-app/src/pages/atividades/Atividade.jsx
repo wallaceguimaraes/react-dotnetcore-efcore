@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap'
 import AtividadeForm from './AtividadeForm';
 import AtividadeLista from './AtividadeLista';
-import api from '../../api/atividade';
+import { AtividadeService } from '../../services/atividadeService';
 import TitlePage from '../../components/TitlePage';
 
 
@@ -27,9 +27,7 @@ function Atividade() {
   }
 
   const pegaTodasAtividades = async () => {
-    const response = await api.get('atividade');
-
-    console.log(response.data)
+    const response = await AtividadeService.getAll();
     return response.data;
   }
 
@@ -47,14 +45,14 @@ function Atividade() {
 
   const addAtividade = async (atividade) => {
     
-      const response = await api.post('atividade', atividade);
+      const response = await AtividadeService.create(atividade);
       setAtividades([...atividades, response.data]);
       handleAtividadeModal();
   }
 
   const deletarAtividade = async (id) => {
     handleConfirmModal(0);
-    if(await api.delete(`atividade/${id}`)){
+    if(await AtividadeService.delete(id)){
       const atividadesFiltradas = atividades.filter(atividade => atividade.id !== id)
       setAtividades([...atividadesFiltradas]);
 
@@ -76,7 +74,7 @@ function Atividade() {
 
   const atualizarAtividade = async (atividade) => {
 
-    const response = await api.put(`atividade/${atividade.id}`, atividade);
+    const response = await AtividadeService.update(atividade);
     
     const { id } = response.data;
     setAtividades(atividades.map(item => item.id === id ? response.data : item ))

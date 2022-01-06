@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Menu from './components/Menu';
-import 'bootswatch/dist/morph/bootstrap.min.css'; 
+import 'bootswatch/dist/lumen/bootstrap.min.css'; 
 /**
  * morph
  * quartz
