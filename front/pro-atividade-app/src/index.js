@@ -5,6 +5,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Menu from './components/Menu';
 import 'bootswatch/dist/lumen/bootstrap.min.css'; 
+import { BrowserRouter as Router } from 'react-router-dom';
 /**
  * morph
  * quartz
@@ -16,12 +17,12 @@ import 'bootswatch/dist/lumen/bootstrap.min.css';
  */
 
 ReactDOM.render( 
-  <>
-  <Menu/>
-  <div className="container" > 
-    <App />
-  </div>
-  </>,
+  <Router>
+    <Menu/>
+      <div className="container" > 
+        <App />
+      </div>
+  </Router>,
   document.getElementById('root')
 );
 
